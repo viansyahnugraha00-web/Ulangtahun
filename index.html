@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Babe 🎉</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{width:100%;height:100%;overflow-x:hidden;font-family:sans-serif;background:#0b0c2a;color:white;text-align:center;position:relative;}
+.page{display:none;position:absolute;top:0;left:0;width:100%;height:100%;padding:10px;flex-direction:column;justify-content:center;align-items:center;}
+.show{display:flex;}
+button{padding:8px 15px;margin:5px;border:none;border-radius:8px;background:pink;color:black;font-weight:bold;cursor:pointer;font-size:1rem;}
+input{padding:8px;border-radius:8px;border:none;text-align:center;font-size:1rem;}
+.menu-container{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:15px;}
+.fruit-btn{font-size:1.5rem;width:50px;height:50px;}
+.floating-heart{position:absolute;font-size:16px;animation:float 6s linear forwards;pointer-events:none;z-index:999;}
+@keyframes float{0%{transform:translateY(0) scale(1);opacity:1;}100%{transform:translateY(-110vh) scale(1.3);opacity:0;}}
+table{color:white;margin:0 auto;border-collapse:collapse;font-size:0.8rem;}
+table th, table td{border:1px solid white;padding:4px;width:30px;height:30px;text-align:center;vertical-align:middle;}
+.highlight{background:pink;color:black;border-radius:50%;}
+#calendar{max-width:250px;margin-top:10px;}
+.star{position:absolute;background:white;border-radius:50%;opacity:0.8;animation:twinkle 2s infinite alternate;}
+@keyframes twinkle{0%{opacity:0.3;}100%{opacity:1;}}
+.confetti{position:absolute;width:6px;height:6px;border-radius:50%;}
+</style>
+</head>
+<body>
+
+<div id="startPage" class="page show">
+  <h1 style="font-size:1.5rem;">Today is your Birthday 🎉</h1>
+  <div id="monthTitle" style="margin-top:5px;font-size:1.2rem;font-weight:bold;"></div>
+  <div id="calendar"></div>
+  <button onclick="startExperience()">Press Me</button>
+</div>
+
+<div id="menuPage" class="page">
+  <h1 style="font-size:1.5rem;">Menu Utama</h1>
+  <div class="menu-container">
+    <button onclick="goPassword('letterPage','101002','The day you came into this world')">💌 Letter</button>
+    <button onclick="goPassword('photoPage','071123','First Date')">📸 Foto</button>
+    <button onclick="goPassword('doaPage','261023','The day we started Dating')">✨ Doa</button>
+    <button onclick="startQuiz()">📝 Quiz</button>
+    <button onclick="startMemory()"> Memory Match
+    </button>
+  </div>
+</div>
+
+<!-- Halaman Password (diperbarui) -->
+<div id="passwordPage" class="page">
+  <h2>Secret Code 🔐</h2><br>
+  <input type="password" id="passInput" placeholder="Type your password.." readonly style="text-align:center; font-size:1.2rem;"><br> 
+  <p id="hint" style="color:lightblue;margin-top:5px;"></p>
+  <p id="wrongMsg" style="display:none;color:pink;">❌ Oops! Wrong, try again babe 💖</p>
+
+  <!-- Keypad angka mirip HP -->
+  <div style="display:grid; grid-template-columns:repeat(3, 70px); gap:10px; justify-content:center; margin:15px auto;">
+    <button onclick="addNumber('1')">1</button>
+    <button onclick="addNumber('2')">2</button>
+    <button onclick="addNumber('3')">3</button>
+    <button onclick="addNumber('4')">4</button>
+    <button onclick="addNumber('5')">5</button>
+    <button onclick="addNumber('6')">6</button>
+    <button onclick="addNumber('7')">7</button>
+    <button onclick="addNumber('8')">8</button>
+    <button onclick="addNumber('9')">9</button>
+    <button onclick="delNumber()">⌫</button>
+    <button onclick="addNumber('0')">0</button>
+    <button onclick="checkPass()">✔️</button>
+  </div>
+
+  <button onclick="showPage('menuPage')">⬅️ Back to menu</button>
+</div>
+
+<div id="letterPage" class="page">
+  <h2 style="text-align:left; margin-bottom:15px; font-size:1.5rem;">Surat Buat Kamu 💌</h2>
+  <div style="
+  max-height: 80vh;
+overflow-y: auto;
+    max-width:650px; 
+    width:90%;
+    margin:20px; 
+    padding:20px; 
+    background:rgba(255,255,255,0.05); 
+    border-radius:12px; 
+    line-height:1.6; 
+    font-size:1rem;
+    text-align:left;
+    overflow-wrap: break-word;
+  ">
+    <p>Halo Sayang,</p><br>
+
+    <p>Hari ini ulang tahun kamu, dan aku cuma pengen kamu tahu… kamu itu berarti banget buat aku. Setiap senyuman, tawa, dan bahkan cara kamu diam kadang, semua itu selalu bikin aku ngerasa bahagia dan tenang.</p><br>
+
+    <p>Aku tahu kita pernah ngelewatin hari-hari yang ga gampang, ada suka dan dukanya. Tapi aku bersyukur kita selalu bareng, saling support, dan tetap bisa bikin satu sama lain tersenyum. Itu bikin aku yakin, kita bisa ngelewatin apapun bersama.</p><br>
+
+    <p>Aku harap ke depan kita bisa terus bareng, ngelewatin semua momen, sambil saling mendukung dan bikin bahagia. Semoga kamu selalu sehat, selalu tersenyum, dan ngerasa betapa berharganya kamu.</p><br>
+
+    <p>Aku janji bakal selalu ada buat kamu, nemenin kamu, dan sayang kamu sepenuh hati, kayak kamu selalu bikin aku ngerasa lengkap.</p><br>
+
+    <p>Terima kasih sudah jadi bagian dari di hidup aku. Semoga ulang tahun ini jadi awal dari banyak kebahagiaan dan kenangan indah buat kamu.</p><br>
+
+    <p>Semoga ulang tahun ini jadi awal dari banyaknya kebahagiaan, cinta, dan kenangan indah buat kamu, walau ada suka dan duka, kita jalani bareng-bareng.</p><br>
+
+    <p><strong>P.S. I love you so much 💖</strong></p> 
+  </div>
+  <button style="margin-top:20px; padding:10px 20px; font-size:1rem;" onclick="showPage('menuPage')">⬅️ Back to menu</button>
+</div>
+
+<div id="photoPage" class="page">
+  <h2>Our Memories 📸</h2>
+  <div class="photo-grid">
+    <img src="foto1.jpg" alt="Foto 1">
+    <img src="foto2.jpg" alt="Foto 2">
+    <img src="foto3.jpg" alt="Foto 3">
+    <img src="foto4.jpg" alt="Foto 4">
+    <img src="foto5.jpg" alt="Foto 5">
+    <img src="foto6.jpg" alt="Foto 6">
+    <img src="foto7.jpg" alt="Foto 7">
+  </div>
+  <button onclick="showPage('menuPage')">⬅️ Back to menu</button>
+</div>
+
+<style>
+.photo-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.photo-grid img {
+  width: 45%;       /* dua foto per baris di HP, bisa diubah */
+  max-width: 150px; /* ukuran maksimal */
+  border-radius: 12px;
+  object-fit: cover;
+}
+@media(min-width:600px){
+  .photo-grid img {
+    width: 30%;      /* tiga foto per baris di layar lebih lebar */
+  }
+}
+</style>
+
+<div id="doaPage" class="page">
+  <h2>Doa Untukmu ✨</h2><br> 
+  <p style="font-size:1rem;">
+    <p>Semoga selalu sehat, dimudahkan segala urusanmu, dan bahagia selalu. 🤍</p><br>
+
+    <p>Semoga setiap langkahmu dipenuhi kebaikan dan cinta yang tulus, dan setiap hari memberimu senyum yang hangat.</p><br>
+
+    <p>Terima kasih karena kamu hadir di hidupku, semoga kamu selalu merasa dicintai dan dihargai.</p><br>
+
+    <p><strong>Wishing you all the happines  Stay Amazing my dear 💖</strong></p><br>
+
+  <button onclick="showPage('menuPage')">⬅️ Back to menu</button>
+</div>
+
+<div id="quizPage" class="page">
+  <h2>Kenali Dirimu 📝</h2>
+  <div id="quizContainer"></div>
+  <button onclick="showPage('menuPage');stopQuiz()">⬅️ Back to menu</button>
+</div>
+
+<div id="memoryPage" class="page">
+  <h2>Memory Match</h2>
+  <div id="memoryBoard" class="menu-container"></div>
+  <div id="memoryResult"></div>
+  <button onclick="showPage('menuPage');stopMemory()">⬅️ Back to menu</button>
+</div>
+
+<audio id="musik" loop>
+  <source src="tujuhbelas.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+// Bintang background
+for(let i=0;i<60;i++){
+  let s=document.createElement('div');
+  s.className='star';
+  s.style.width=s.style.height=(Math.random()*2+1)+'px';
+  s.style.left=Math.random()*100+'vw';
+  s.style.top=Math.random()*100+'vh';
+  s.style.animationDuration=(1+Math.random()*2)+'s';
+  document.body.appendChild(s);
+}
+
+// Kalender Oktober 2025
+function generateCalendar(year,month,highlightDay){
+  const calendar=document.getElementById('calendar');
+  const monthTitle=document.getElementById('monthTitle');
+  const monthNames=['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','October','November','Desember'];
+  monthTitle.textContent=monthNames[month]+" "+year;
+  calendar.innerHTML='';
+  const daysOfWeek=['Sun','Mon','Tue','Wed','Thur','Fri','Sat'];
+  const table=document.createElement('table');
+  let tr=document.createElement('tr');
+  daysOfWeek.forEach(d=>{let th=document.createElement('th');th.textContent=d;tr.appendChild(th);});
+  table.appendChild(tr);
+  const firstDay=new Date(year,month,1).getDay();
+  const daysInMonth=new Date(year,month+1,0).getDate();
+  let date=1;
+  for(let i=0;i<6;i++){
+    tr=document.createElement('tr');
+    for(let j=0;j<7;j++){
+      let td=document.createElement('td');
+      if(i===0 && j<firstDay) td.textContent='';
+      else if(date>daysInMonth) td.textContent='';
+      else { td.textContent=date; if(date===highlightDay) td.className='highlight'; date++; }
+      tr.appendChild(td);
+    }
+    table.appendChild(tr);
+  }
+  calendar.appendChild(table);
+}
+generateCalendar(2025,9,10);
+
+// Navigasi & password
+let targetPage="", targetPass="", targetHint="";
+function showPage(id){document.querySelectorAll(".page").forEach(p=>p.classList.remove("show"));document.getElementById(id).classList.add("show");stopMemory();stopQuiz();}
+function goPassword(page, pass, hint){targetPage=page;targetPass=pass;targetHint=hint;document.getElementById("passInput").value="";document.getElementById("wrongMsg").style.display="none";document.getElementById("hint").textContent="Hint: "+targetHint;showPage("passwordPage");}
+function checkPass(){if(document.getElementById("passInput").value===targetPass) showPage(targetPage); else document.getElementById("wrongMsg").style.display="block";}
+
+// Floating hearts + confetti + love jatuh acak
+function startExperience(){
+  showPage('menuPage');
+  document.getElementById("musik").play();
+
+  // Floating hearts
+  for(let i=0;i<15;i++){
+    let h=document.createElement("div");
+    h.className="floating-heart";
+    h.innerHTML="❤️";
+    h.style.left=Math.random()*100+"vw";
+    h.style.fontSize=(16+Math.random()*12)+"px";
+    h.style.animationDuration=(3+Math.random()*3)+"s";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),7000);
+  }
+
+  // Confetti + Love jatuh acak terus
+  createFallingShapes();
+}
+
+function createFallingShapes(){
+  const shapes=["confetti","love"];
+  setInterval(()=>{
+    let s=document.createElement("div");
+    let shape = shapes[Math.floor(Math.random()*shapes.length)];
+    
+    if(shape==="confetti"){
+      s.className="confetti";
+      s.style.background=`hsl(${Math.random()*360},100%,50%)`;
+    } else {
+      s.className="confetti";
+      s.innerHTML="❤️";
+      s.style.fontSize=(10+Math.random()*12)+"px";
+      s.style.borderRadius="0";
+      s.style.color="pink";
+    }
+
+    s.style.left=Math.random()*100+"vw";
+    s.style.width=s.style.height=(Math.random()*6+4)+"px";
+    s.style.opacity=Math.random()*0.8+0.2;
+
+    let fallDuration = 2000 + Math.random()*3000; // 2-5 detik
+    s.style.transition = `transform ${fallDuration}ms linear, opacity ${fallDuration}ms`;
+
+    let offsetX = (Math.random()-0.5)*50; // -25 s/d 25px
+    document.body.appendChild(s);
+
+    setTimeout(()=>{
+      s.style.transform = `translate(${offsetX}px, 100vh) rotate(${Math.random()*360}deg)`;
+      s.style.opacity=0;
+    },50);
+
+    setTimeout(()=>s.remove(), fallDuration+100);
+  },100);
+}
+
+// Fungsi keypad angka
+function addNumber(num){
+  const input=document.getElementById("passInput");
+  input.value+=num;
+}
+function delNumber(){
+  const input=document.getElementById("passInput");
+  input.value=input.value.slice(0,-1);
+}
+
+// Quiz diri
+const quizData=[
+  {q:"Kalau ulang tahunmu nanti, kegiatan favoritmu apa?", 
+   options:["Pesta dengan teman","Makan malam romantis","Nonton film","Liburan kecil"], 
+   result:["Pesta dengan teman","Makan malam romantis","Nonton film","Liburan kecil"]},
+
+  {q:"Hadiah ulang tahun apa yang paling kamu suka?", 
+   options:["Baju/aksesoris","Buku/album musik","Surprise party","Waktu bersama pasangan"], 
+   result:["Baju/aksesoris","Buku/album musik","Surprise party","Waktu bersama pasangan"]},
+
+  {q:"Momen ulang tahun paling berkesan bagimu adalah…", 
+   options:["Kejutan dari keluarga","Rayain bareng teman","Ulang tahun pertama kita bersama","Liburan spesial"], 
+   result:["Kejutan dari keluarga","Rayain bareng teman","Ulang tahun pertama kita bersama","Liburan spesial"]},
+
+  {q:"Kalau ulang tahunmu bisa dibuat spesial, kamu pilih…", 
+   options:["Momen romantis bareng aku","Hari santai di rumah","Adventure kecil berdua","Surprise party kecil"], 
+   result:["Momen romantis bareng aku","Hari santai di rumah","Adventure kecil berdua","Surprise party kecil"]},
+
+  {q:"Saat ulang tahun, hal kecil yang paling bikin kamu senang adalah…", 
+   options:["Dapat pesan manis","Pelukan dari aku","Foto bareng","Dengar lagu favorit"], 
+   result:["Dapat pesan manis","Pelukan dari aku","Foto bareng","Dengar lagu favorit"]},
+
+  {q:"Kalau ulang tahunmu dihabiskan bareng aku, aktivitas seru yang kamu pilih?", 
+   options:["Nonton film romantis","Jalan-jalan malam","Masak bareng","Bermain game seru"], 
+   result:["Nonton film romantis","Jalan-jalan malam","Masak bareng","Bermain game seru"]},
+
+  {q:"Kalau ulang tahunmu bisa dihabiskan di mana?", 
+   options:["Pantai","Gunung","Kota besar","Rumah cozy"], 
+   result:["Pantai","Gunung","Kota besar","Rumah cozy"]},
+
+  {q:"Hal yang paling ingin kamu lakukan di ulang tahunmu?", 
+   options:["Terima kejutan manis","Dapat pelukan hangat","Dengar lagu favorit","Foto bareng aku"], 
+   result:["Terima kejutan manis","Dapat pelukan hangat","Dengar lagu favorit","Foto bareng aku"]},
+
+  {q:"Kejutan kecil apa yang paling bikin kamu senang saat ulang tahun?", 
+   options:["Surat cinta dari aku 💌","Pesan manis di kue 🎂","Video kenangan 📹","Pelukan hangat 🤗"], 
+   result:["Surat cinta dari aku 💌","Pesan manis di kue 🎂","Video kenangan 📹","Pelukan hangat 🤗"]},
+
+{q:"Pesan manis dari aku saat ulang tahunmu harus…", 
+   options:["Singkat & lucu","Romantis panjang","Dengan emoji banyak 💖","Surprise di kue ulang tahun"], 
+   result:["Singkat & lucu","Romantis panjang","Dengan emoji banyak 💖","Surprise di kue ulang tahun"]}
+];
+
+let currentQuestion=0, answers=[];
+function startQuiz(){
+  showPage('quizPage');
+  currentQuestion=0;
+  answers=[];
+  showQuestion();
+}
+
+function showQuestion(){
+  const container=document.getElementById("quizContainer");
+  container.innerHTML="";
+  const q=quizData[currentQuestion];
+  const div=document.createElement("div");
+  div.innerHTML=`<p>${currentQuestion+1}. ${q.q}</p>`;
+  q.options.forEach((opt,j)=>{
+    const btn=document.createElement("button");
+    btn.textContent=opt;
+    btn.onclick=function(){
+      answers[currentQuestion]=q.result[j];
+      currentQuestion++;
+      if(currentQuestion<quizData.length) showQuestion();
+      else showSummary();
+    };
+    div.appendChild(btn);
+  });
+  container.appendChild(div);
+}
+
+function showSummary(){
+  const container=document.getElementById("quizContainer");
+  container.innerHTML=`<h3>Kesimpulan kepribadianmu: ${answers.join(", ")}</h3><p>Kamu orang yang spesial 💖 Semoga selalu bahagia!</p>`;
+}
+
+function stopQuiz(){
+  document.getElementById("quizContainer").innerHTML="";
+}
+
+// Memory Buah
+let memoryTimer=null;
+function startMemory(){
+  showPage('memoryPage');
+  const board=document.getElementById("memoryBoard");
+  board.innerHTML="";
+  document.getElementById("memoryResult").innerHTML="";
+
+  let images=["m1.jpg","m2.jpg","m3.jpg","m4.jpg","m5.jpg","m6.jpg"];
+  let cards=images.concat(images).sort(()=>0.5-Math.random());
+
+  let first=null, second=null;
+
+  cards.forEach(img=>{
+    let card=document.createElement("div");
+    card.className="fruit-btn";
+    card.style.position="relative";
+    card.style.width="60px";
+    card.style.height="60px";
+    card.style.background="#444";
+    card.style.borderRadius="8px";
+    card.style.cursor="pointer";
+    card.dataset.img=img;
+
+    let imageTag=document.createElement("img");
+    imageTag.src=img;
+    imageTag.style.width="100%";
+    imageTag.style.height="100%";
+    imageTag.style.objectFit="cover";
+    imageTag.style.position="absolute";
+    imageTag.style.top="0";
+    imageTag.style.left="0";
+    imageTag.style.display="none";
+    card.appendChild(imageTag);
+
+    card.onclick=function(){
+      if(imageTag.style.display==="none" && (!first || !second)){
+        imageTag.style.display="block";
+        if(!first){ first={card,imageTag,img}; } 
+        else { second={card,imageTag,img}; checkMatch(); }
+      }
+    }
+
+    board.appendChild(card);
+  });
+
+  function checkMatch(){
+    if(first.img===second.img){
+      document.getElementById("memoryResult").innerHTML="Yeay, we match! 🍀";
+      first=null; second=null;
+    } else {
+      setTimeout(()=>{
+        first.imageTag.style.display="none";
+        second.imageTag.style.display="none";
+        document.getElementById("memoryResult").innerHTML="Try again! 😅";
+        first=null; second=null;
+      },500);
+    }
+  }
+}
+
+function stopMemory(){
+  if(memoryTimer) clearTimeout(memoryTimer);
+  document.getElementById("memoryBoard").innerHTML="";
+  document.getElementById("memoryResult").innerHTML="";
+}
+</script>
+</body>
+</html>
